@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="SubstandardAvalonia/App.axaml" value="SubstandardAvalonia/SubstandardAvalonia.csproj" />
+        <entry key="SubstandardAvalonia/MainWindow.axaml" value="SubstandardAvalonia/SubstandardAvalonia.csproj" />
+        <entry key="SubstandardMVVM/App.axaml" value="SubstandardMVVM/SubstandardMVVM.csproj" />
+        <entry key="SubstandardMVVM/Resources1.axaml" value="SubstandardMVVM/SubstandardMVVM.csproj" />
+        <entry key="SubstandardMVVM/Views/AlbumPageView.axaml" value="SubstandardMVVM/SubstandardMVVM.csproj" />
+        <entry key="SubstandardMVVM/Views/HomePageView.axaml" value="SubstandardMVVM/SubstandardMVVM.csproj" />
+        <entry key="SubstandardMVVM/Views/MainWindow.axaml" value="SubstandardMVVM/SubstandardMVVM.csproj" />
+        <entry key="SubstandardMVVM/Views/SearchPage.axaml" value="SubstandardMVVM/SubstandardMVVM.csproj" />
+        <entry key="SubstandardMVVM/Views/SearchPageView.axaml" value="SubstandardMVVM/SubstandardMVVM.csproj" />
+        <entry key="SubstandardMVVM/Views/ShowAlbumPageView.axaml" value="SubstandardMVVM/SubstandardMVVM.csproj" />
+        <entry key="SubstandardMVVM/Views/ShowArtistPageView.axaml" value="SubstandardMVVM/SubstandardMVVM.csproj" />
+        <entry key="SubstandardMVVM/Views/Styles1.axaml" value="SubstandardMVVM/SubstandardMVVM.csproj" />
+      </map>
+    </option>
+  </component>
+</project>
