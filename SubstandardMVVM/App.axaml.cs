@@ -1,10 +1,10 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using SubstandardMVVM.ViewModels;
-using SubstandardMVVM.Views;
+using SubstandardApp.ViewModels;
+using SubstandardApp.Views;
 
-namespace SubstandardMVVM;
+namespace SubstandardApp;
 
 public partial class App : Application
 {

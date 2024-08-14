@@ -4,7 +4,7 @@ using System.Text.Json;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace SubstandardMVVM.Models;
+namespace SubstandardApp.Models;
 
 public partial class SettingsModel : ObservableObject
 {

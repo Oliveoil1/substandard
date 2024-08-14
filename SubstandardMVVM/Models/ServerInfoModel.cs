@@ -3,7 +3,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using SubstandardLib.Subsonic;
 using GitCredentialManager;
 
-namespace SubstandardMVVM.Models;
+namespace SubstandardApp.Models;
 
 public partial class ServerInfoModel : ObservableObject
 {

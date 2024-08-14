@@ -9,7 +9,7 @@
         <entry key="SubstandardMVVM/Resources1.axaml" value="SubstandardMVVM/SubstandardMVVM.csproj" />
         <entry key="SubstandardMVVM/Views/AlbumPageView.axaml" value="SubstandardMVVM/SubstandardMVVM.csproj" />
         <entry key="SubstandardMVVM/Views/HomePageView.axaml" value="SubstandardMVVM/SubstandardMVVM.csproj" />
-        <entry key="SubstandardMVVM/Views/MainWindow.axaml" value="SubstandardMVVM/SubstandardMVVM.csproj" />
+        <entry key="SubstandardMVVM/Views/MainWindow.axaml" value="SubstandardMVVM/SubstandardApp.csproj" />
         <entry key="SubstandardMVVM/Views/SearchPage.axaml" value="SubstandardMVVM/SubstandardMVVM.csproj" />
         <entry key="SubstandardMVVM/Views/SearchPageView.axaml" value="SubstandardMVVM/SubstandardMVVM.csproj" />
         <entry key="SubstandardMVVM/Views/ShowAlbumPageView.axaml" value="SubstandardMVVM/SubstandardMVVM.csproj" />

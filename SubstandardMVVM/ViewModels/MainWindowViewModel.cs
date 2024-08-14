@@ -11,12 +11,12 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using DynamicData;
 using FluentIcons.Common;
 using ReactiveUI;
+using SubstandardApp.Models;
 using SubstandardLib;
 using SubstandardLib.Metadata;
 using SubstandardLib.Subsonic;
-using SubstandardMVVM.Models;
 
-namespace SubstandardMVVM.ViewModels;
+namespace SubstandardApp.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase
 {

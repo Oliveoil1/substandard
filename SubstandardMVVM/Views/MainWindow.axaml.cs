@@ -8,10 +8,10 @@ using Avalonia.Interactivity;
 using Avalonia.LogicalTree;
 using Avalonia.VisualTree;
 using DynamicData;
-using SubstandardMVVM.Models;
-using SubstandardMVVM.ViewModels;
+using SubstandardApp.Models;
+using SubstandardApp.ViewModels;
 
-namespace SubstandardMVVM.Views;
+namespace SubstandardApp.Views;
 
 public partial class MainWindow : Window
 {

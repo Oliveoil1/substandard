@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using SubstandardLib.Metadata;
 
-namespace SubstandardMVVM.Models;
+namespace SubstandardApp.Models;
 
 public partial class ArtistModel : ObservableObject
 {

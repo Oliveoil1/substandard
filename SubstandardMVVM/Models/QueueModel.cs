@@ -7,7 +7,7 @@ using DynamicData;
 using SubstandardLib;
 using SubstandardLib.Metadata;
 
-namespace SubstandardMVVM.Models;
+namespace SubstandardApp.Models;
 
 public partial class QueueModel : ObservableObject
 {

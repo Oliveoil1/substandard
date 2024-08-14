@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace SubstandardMVVM.Models;
+namespace SubstandardApp.Models;
 
 public partial class PlaylistTreeNode : ObservableObject
 {

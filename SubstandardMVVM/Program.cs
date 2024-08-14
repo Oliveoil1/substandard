@@ -2,7 +2,7 @@
 using Avalonia.ReactiveUI;
 using System;
 
-namespace SubstandardMVVM;
+namespace SubstandardApp;
 
 sealed class Program
 {

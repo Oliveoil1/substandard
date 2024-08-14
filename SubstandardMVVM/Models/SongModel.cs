@@ -5,7 +5,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using SubstandardLib.Metadata;
 using SubstandardLib.Subsonic;
 
-namespace SubstandardMVVM.Models;
+namespace SubstandardApp.Models;
 
 public partial class SongModel : ObservableObject
 {
