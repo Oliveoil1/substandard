@@ -1,0 +1,53 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:SubstandardApp.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="SubstandardApp.Views.SettingsWindow"
+        x:DataType="vm:SettingsWindowViewModel"
+        Title="SettingsWindow"
+        RequestedThemeVariant="Dark">
+    <Design.DataContext>
+        <vm:SettingsWindowViewModel/>
+    </Design.DataContext>
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" FlowDirection="RightToLeft">
+            <Button>Apply</Button>
+        </StackPanel>
+        <TabControl>
+            <TabItem Header="Server Info">
+                <Grid ColumnDefinitions="80,200"
+                      RowDefinitions="28,28,28">
+                    <Label Grid.Row="0"
+                           Grid.Column="0"
+                           VerticalAlignment="Center">
+                        Server Url
+                    </Label>
+                    <Label Grid.Row="1"
+                           Grid.Column="0"
+                           VerticalAlignment="Center">
+                        Username
+                    </Label>
+                    <Label Grid.Row="2"
+                           Grid.Column="0"
+                           VerticalAlignment="Center">
+                        Password
+                    </Label>
+                    <TextBox Grid.Row="0"
+                             Grid.Column="1"
+                             Margin="0,2,0,2"
+                             Text="{Binding ServerInfoModel.Url}"/>
+                    <TextBox Grid.Row="1"
+                             Grid.Column="1"
+                             Margin="0,2,0,2"
+                             Text="{Binding ServerInfoModel.Username}"/>
+                    <TextBox Grid.Row="2"
+                             Grid.Column="1"
+                             Margin="0,2,0,2"
+                             Text="{Binding ServerInfoModel.Password}"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </DockPanel>
+</Window>
