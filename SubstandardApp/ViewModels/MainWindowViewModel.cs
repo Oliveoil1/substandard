@@ -21,7 +21,7 @@ namespace SubstandardApp.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase
 {
-	private Dictionary<string, PlaylistModel> _playlists = new();
+	private readonly Dictionary<string, PlaylistModel> _playlists = new();
 
 	[ObservableProperty] private NowPlayingModel _nowPlaying = new NowPlayingModel();
 	[ObservableProperty] private IAsyncImageLoader _imageLoader = new BaseWebImageLoader();
@@ -30,6 +30,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
 	[ObservableProperty] private string _playbackSecondsString;
 	[ObservableProperty] private string _playbackMaxSecondsString;
+	[ObservableProperty] private bool _seekingManually = true;
 
 	[ObservableProperty] private bool _rightPanelOpen = false;
 	[ObservableProperty] private Symbol _rightPanelSymbol = Symbol.ArrowLeft;
@@ -60,6 +61,8 @@ public partial class MainWindowViewModel : ViewModelBase
 	{
 		while (true)
 		{
+			SeekingManually = false;
+			
 			NowPlayingInfo nowPlaying = await _subsonicClient.GetNowPlayingInfo();
 			NowPlaying.UpdateNowPlaying(nowPlaying);
 
@@ -72,6 +75,8 @@ public partial class MainWindowViewModel : ViewModelBase
 			{
 				QueueModel.NextSong();
 			}
+
+			SeekingManually = true;
 			
 			await Task.Delay(100);
 		}
@@ -167,6 +172,7 @@ public partial class MainWindowViewModel : ViewModelBase
 			_playlists[id].Sort(PlaylistModel.SortMode.Title);
 			PlaylistTreeNode artistNode = new(artist.Name);
 			albumNodes.Add(new PlaylistTreeNode("All Songs", id));
+			albumNodes.Add(new PlaylistTreeNode("All Albums", null, artist.Id));
 			
 			//get albums
 			List<Album> albums = fullSearch.Albums.Where(album => album.ArtistId == artist.Id).ToList();
@@ -220,5 +226,44 @@ public partial class MainWindowViewModel : ViewModelBase
 			Header = "Settings",
 			Content = new SettingsControl(_settingsModel)
 		});
+	}
+
+	public void FixPlayback()
+	{
+		_subsonicClient.FixPlayback();
+	}
+
+	public void GoToArtist()
+	{
+		ShowArtistGrid(NowPlaying.CurrentAlbum.ArtistId);
+	}
+	
+	public void GoToAlbum()
+	{
+		LoadPlaylist($"album:{NowPlaying.CurrentSong.AlbumId}");
+	}
+
+	public void SeekTo(float time)
+	{
+		_subsonicClient.SeekTo(time);
+	}
+
+	public async void ShowArtistGrid(string artistId)
+	{
+		Artist artist = await _subsonicClient.GetArtist(artistId);
+		SearchResult searchResult = await _subsonicClient.Search(artist.Name);
+		List<Album> albums = searchResult.Albums.Where(album => album.ArtistId == artist.Id).ToList();;
+		List<AlbumModel> albumModels = new();
+		foreach (var album in albums)
+		{
+			albumModels.Add(new AlbumModel(album));
+		}
+		
+		Tabs.Add(new()
+		{
+			Header = $"Artist: {artist.Name}",
+			Content = new ArtistGridControl(this, albumModels)
+		});
+		TabSelectedIndex = Tabs.Count - 1;
 	}
 }

@@ -4,6 +4,7 @@
     <option name="projectPerEditor">
       <map>
         <entry key="SubstandardApp/App.axaml" value="SubstandardApp/SubstandardApp.csproj" />
+        <entry key="SubstandardApp/Views/ArtistGridControl.axaml" value="SubstandardApp/SubstandardApp.csproj" />
         <entry key="SubstandardApp/Views/MainWindow.axaml" value="SubstandardApp/SubstandardApp.csproj" />
         <entry key="SubstandardApp/Views/PlaylistControl.axaml" value="SubstandardApp/SubstandardApp.csproj" />
         <entry key="SubstandardApp/Views/SettingsControl.axaml" value="SubstandardApp/SubstandardApp.csproj" />

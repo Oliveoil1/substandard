@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.LogicalTree;
@@ -15,9 +16,6 @@ namespace SubstandardApp.Views;
 
 public partial class MainWindow : Window
 {
-	int selectedIndex = 0;
-	private int hoverIndex;
-	private bool queueBoxDrop = false;
 	public MainWindow()
 	{
 		InitializeComponent();
@@ -29,13 +27,13 @@ public partial class MainWindow : Window
 		{
 			if (node.AttachedPlaylist != null)
 				viewModel.LoadPlaylist(node.AttachedPlaylist);
+			else if (node.ArtistId != null)
+				viewModel.ShowArtistGrid(node.ArtistId);
 		}
 	}
 
 	private void QueueBox_OnPointerReleased(object? sender, PointerReleasedEventArgs e)
 	{
-		queueBoxDrop = true;
-
 		Point mousePos = e.GetPosition(QueueBox);
 		var hit = QueueBox.InputHitTest(mousePos);
 
@@ -53,6 +51,14 @@ public partial class MainWindow : Window
 			{
 				viewModel.MoveQueueSong(originIndex, destinationIndex);
 			}
+		}
+	}
+
+	private void Seekbar_OnValueChanged(object? sender, RangeBaseValueChangedEventArgs e)
+	{
+		if (DataContext is MainWindowViewModel viewModel && viewModel.SeekingManually)
+		{
+			viewModel.SeekTo((float)e.NewValue);
 		}
 	}
 }

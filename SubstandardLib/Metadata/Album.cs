@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Nodes;
+using SubstandardLib.Subsonic;
 
 namespace SubstandardLib.Metadata;
 
@@ -7,6 +8,7 @@ public struct Album
 	public string Id;
 	public string ArtistId;
 	public string CoverArtId;
+	public string CoverArtUrl;
 	
 	public string Title;
 	public string ArtistName;
@@ -53,5 +55,14 @@ public struct Album
 				Songs.Add(song);
 			}
 		}
+		
+		CoverArtUrl = Utils.HttpGetUrl(
+			"getCoverArt",
+			new[]
+			{
+				$"id={CoverArtId}",
+				$"size={512}"
+			}
+		);
 	}
 }

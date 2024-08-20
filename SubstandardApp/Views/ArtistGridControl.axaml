@@ -1,0 +1,46 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:SubstandardApp.ViewModels"
+             xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="SubstandardApp.Views.ArtistGridControl"
+             x:DataType="viewModels:ArtistGridControlViewModel">
+    <Design.DataContext>
+        <viewModels:ArtistGridControlViewModel/>
+    </Design.DataContext>
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top"
+                    Orientation="Horizontal">
+            <Label>Grid Size</Label>
+            <Slider HorizontalAlignment="Stretch" 
+                    Width="300"
+                    Maximum="512"
+                    Minimum="64"
+                    Value="{Binding GridSize}"/>
+            <Label Content="{Binding GridSize}"/>
+        </StackPanel>
+        <ListBox ItemsSource="{Binding AlbumsToShow}"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel HorizontalAlignment="Center"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Button Width="{Binding $parent[ListBox].((viewModels:ArtistGridControlViewModel)DataContext).GridSize}"
+                            Command="{Binding $parent[ListBox].((viewModels:ArtistGridControlViewModel)DataContext).AlbumClicked}"
+                            CommandParameter="{Binding}">
+                        <StackPanel>
+                            <asyncImageLoader:AdvancedImage Source="{Binding CoverArtUrl}"
+                                                            Loader="{Binding $parent[ListBox].((viewModels:ArtistGridControlViewModel)DataContext).ImageLoader}"/>
+                            <Label Content="{Binding Title}"/>
+                        </StackPanel>
+                    </Button>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </DockPanel>
+</UserControl>

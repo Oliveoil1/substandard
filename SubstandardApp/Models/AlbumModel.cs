@@ -9,6 +9,7 @@ public partial class AlbumModel : ObservableObject
 	[ObservableProperty] private string _id;
 	[ObservableProperty] private string _artistId;
 	[ObservableProperty] private string _coverArtId;
+	[ObservableProperty] private string _coverArtUrl;
 	
 	[ObservableProperty] private string _title;
 	[ObservableProperty] private string _artistName;
@@ -25,6 +26,7 @@ public partial class AlbumModel : ObservableObject
 		Id = album.Id;
 		ArtistId = album.ArtistId;
 		CoverArtId = album.CoverArtId;
+		CoverArtUrl = album.CoverArtUrl;
 
 		Title = album.Title;
 		ArtistName = album.ArtistName;

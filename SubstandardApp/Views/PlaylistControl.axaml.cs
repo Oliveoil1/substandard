@@ -11,6 +11,10 @@ namespace SubstandardApp.Views;
 
 public partial class PlaylistControl : UserControl
 {
+	public PlaylistControl()
+	{
+		InitializeComponent();
+	}
 	public PlaylistControl(PlaylistModel playlistModel, QueueModel queueModel)
 	{
 		DataContext = new PlaylistControlViewModel(playlistModel, queueModel);

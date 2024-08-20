@@ -33,7 +33,7 @@ public partial class NowPlayingModel : ObservableObject
 
 		IsPaused = nowPlayingInfo.IsPaused;
 		AtSongEnd = nowPlayingInfo.AtSongEnd;
-
+		
 		PlaybackSeconds = nowPlayingInfo.PlaybackSeconds;
 		PlaybackMaxSeconds = nowPlayingInfo.PlaybackMaxSeconds;
 

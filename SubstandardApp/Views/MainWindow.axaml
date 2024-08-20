@@ -30,204 +30,6 @@
     </Window.Resources>
 
     <Grid ColumnDefinitions="300,*,4,220">
-        <!-- <Grid VerticalAlignment="Top" -->
-        <!--       HorizontalAlignment="Stretch" -->
-        <!--       Height="64" -->
-        <!--       Background="{DynamicResource HeaderBarBackgroundBrush}"> -->
-        <!--     <Grid.ColumnDefinitions> -->
-        <!--         <ColumnDefinition Width="250" /> -->
-        <!--         <ColumnDefinition Width="*" /> -->
-        <!--     </Grid.ColumnDefinitions> -->
-        <!--     <StackPanel Grid.Column="0"  -->
-        <!--                 Orientation="Horizontal" -->
-        <!--                 HorizontalAlignment="Center"> -->
-        <!--         <StackPanel.Styles> -->
-        <!--             <Style Selector="Button"> -->
-        <!--                 <Setter Property="Margin" Value="2"/> -->
-        <!--             </Style> -->
-        <!--         </StackPanel.Styles> -->
-        <!--         <Button Height="35" -->
-        <!--                 Width="35" -->
-        <!--                 CornerRadius="35"> -->
-        <!--             <ic:SymbolIcon Symbol="Speaker2" IsFilled="False" /> -->
-        <!--         </Button> -->
-        <!--         <Button Height="40" -->
-        <!--                 Width="40" -->
-        <!--                 CornerRadius="40" -->
-        <!--                 Command="{Binding PreviousSongCommand}"> -->
-        <!--             <ic:SymbolIcon Symbol="Previous" IsFilled="True" /> -->
-        <!--         </Button> -->
-        <!--         <Button Height="40" -->
-        <!--                 Width="40" -->
-        <!--                 CornerRadius="40" -->
-        <!--                 Command="{Binding PausePlayCommand}"> -->
-        <!--             <ic:SymbolIcon Symbol="{Binding PausePlayIcon}" IsFilled="True" /> -->
-        <!--         </Button> -->
-        <!--         <Button Height="40" -->
-        <!--                 Width="40" -->
-        <!--                 CornerRadius="40" -->
-        <!--                 Command="{Binding NextSongCommand}"> -->
-        <!--             <ic:SymbolIcon Symbol="Next" IsFilled="True" /> -->
-        <!--         </Button> -->
-        <!--         <Button Height="35" -->
-        <!--                 Width="35" -->
-        <!--                 CornerRadius="35"> -->
-        <!--             <ic:SymbolIcon Symbol="ArrowRepeatAll" IsFilled="False" /> -->
-        <!--         </Button> -->
-        <!--     </StackPanel> -->
-        <!--     <Grid Grid.Column="1"> -->
-        <!--         <Label VerticalAlignment="Bottom" -->
-        <!--                HorizontalAlignment="Left" -->
-        <!--                FontSize="12" -->
-        <!--                Margin="5,0,0,5" -->
-        <!--                Content="{Binding PlaybackSecondsString}"/> -->
-        <!--         <Slider VerticalAlignment="Bottom"  -->
-        <!--                 Height="35" -->
-        <!--                 Margin="60,0,60,5" -->
-        <!--                 Value="{Binding NowPlaying.PlaybackSeconds}" -->
-        <!--                 Maximum="{Binding NowPlaying.PlaybackMaxSeconds}"/> -->
-        <!--         <Label VerticalAlignment="Bottom" -->
-        <!--                HorizontalAlignment="Right" -->
-        <!--                FontSize="12" -->
-        <!--                Margin="0,0,5,5" -->
-        <!--                Content="{Binding PlaybackMaxSecondsString}"/> -->
-        <!--         <Border BorderThickness="1" -->
-        <!--                 Margin="5,5,5,30"> -->
-        <!--             <StackPanel Orientation="Horizontal" -->
-        <!--                         VerticalAlignment="Center" -->
-        <!--                         HorizontalAlignment="Center"> -->
-        <!--                 <StackPanel.Styles> -->
-        <!--                     <Style Selector="Button,Label"> -->
-        <!--                         <Setter Property="VerticalAlignment" Value="Center"/> -->
-        <!--                     </Style> -->
-        <!--                 </StackPanel.Styles> -->
-        <!--                 <Button Width="20" -->
-        <!--                         Height="20" -->
-        <!--                         CornerRadius="20" -->
-        <!--                         Padding="0" -->
-        <!--                         Background="Transparent" -->
-        <!--                         Command="{Binding ToggleStarred}"> -->
-        <!--                     <ic:SymbolIcon Symbol="Heart" -->
-        <!--                                    IsFilled="{Binding NowPlaying.CurrentSong.Starred}" -->
-        <!--                                    FontSize="15"/> -->
-        <!--                 </Button> -->
-        <!--                 <Label FontSize="12" -->
-        <!--                        FontWeight="DemiBold" Content="{Binding NowPlaying.CurrentSong.Title}"/> -->
-        <!--                 <Label>|</Label> -->
-        <!--                 <Label FontSize="12" Content="{Binding NowPlaying.CurrentSong.ArtistName}"/> -->
-        <!--                 <Label>|</Label> -->
-        <!--                 <Label FontSize="12" Content="{Binding NowPlaying.CurrentSong.AlbumName}"/> -->
-        <!--                 <Button Width="20" -->
-        <!--                         Height="20" -->
-        <!--                         CornerRadius="20" -->
-        <!--                         Padding="0" -->
-        <!--                         Background="Transparent"> -->
-        <!--                     <ic:SymbolIcon Symbol="Info" -->
-        <!--                                    IsFilled="False" -->
-        <!--                                    FontSize="15"/> -->
-        <!--                 </Button> -->
-        <!--             </StackPanel> -->
-        <!--         </Border> -->
-        <!--     </Grid> -->
-        <!-- </Grid> -->
-        <!-- <SplitView IsPaneOpen="{Binding RightPanelOpen}"  -->
-        <!--            DisplayMode="CompactInline" -->
-        <!--            PanePlacement="Right" -->
-        <!--            CompactPaneLength="30" -->
-        <!--            OpenPaneLength="250" -->
-        <!--            Margin="0, 64, 0, 0"> -->
-        <!--     <SplitView.Pane> -->
-        <!--         <Grid> -->
-        <!--             <Button Command="{Binding ToggleRightPanel}" -->
-        <!--                     HorizontalAlignment="Stretch" -->
-        <!--                     VerticalAlignment="Top" -->
-        <!--                     Padding="0" -->
-        <!--                     Height="30"> -->
-        <!--                 <ic:SymbolIcon Symbol="{Binding RightPanelSymbol}"/> -->
-        <!--             </Button> -->
-        <!--             <TabControl IsVisible="{Binding RightPanelOpen}" -->
-        <!--                         Margin="0,30,0,10"> -->
-        <!--                 <TabItem Header="Queue" -->
-        <!--                          FontSize="16"> -->
-        <!--                     <ListBox ItemsSource="{Binding QueueModel.Queue}"> -->
-        <!--                         <ListBox.ItemTemplate> -->
-        <!--                             <DataTemplate> -->
-        <!--                                 <StackPanel> -->
-        <!--                                     <Label Content="{Binding Title}"/> -->
-        <!--                                 </StackPanel> -->
-        <!--                             </DataTemplate> -->
-        <!--                         </ListBox.ItemTemplate> -->
-        <!--                     </ListBox> -->
-        <!--                 </TabItem> -->
-        <!--                 <TabItem Header="History" -->
-        <!--                          FontSize="16"> -->
-        <!--                     <ListBox ItemsSource="{Binding QueueModel.QueueHistory}"> -->
-        <!--                         <ListBox.ItemTemplate> -->
-        <!--                             <DataTemplate> -->
-        <!--                                 <StackPanel> -->
-        <!--                                     <Label Content="{Binding Title}"/> -->
-        <!--                                 </StackPanel> -->
-        <!--                             </DataTemplate> -->
-        <!--                         </ListBox.ItemTemplate> -->
-        <!--                     </ListBox> -->
-        <!--                 </TabItem> -->
-        <!--             </TabControl> -->
-        <!--         </Grid> -->
-        <!--     </SplitView.Pane> -->
-        <!--     <SplitView IsPaneOpen="True" -->
-        <!--                DisplayMode="Inline" -->
-        <!--                OpenPaneLength="{Binding SidebarWidth}"> -->
-        <!--         <SplitView.Pane> -->
-        <!--             <Grid> -->
-        <!--                 <Grid.RowDefinitions> -->
-        <!--                     <RowDefinition Height="*"/> -->
-        <!--                     <RowDefinition Height="Auto"/> -->
-        <!--                 </Grid.RowDefinitions> -->
-        <!--                 <ScrollViewer Grid.Row="0"> -->
-        <!--                     <StackPanel> -->
-        <!--                         <StackPanel.Styles> -->
-        <!--                             <Style Selector="TextBox,Button,TreeView"> -->
-        <!--                                 <Setter Property="Margin" Value="2"/> -->
-        <!--                                 <Setter Property="HorizontalAlignment" Value="Stretch"/> -->
-        <!--                             </Style> -->
-        <!--                         </StackPanel.Styles> -->
-        <!--                         <TextBox Watermark="Search" Text="{Binding SearchText, Mode=TwoWay}"> -->
-        <!--                             <TextBox.KeyBindings> -->
-        <!--                                 <KeyBinding Command="{Binding SearchCommand}" Gesture="Enter"/> -->
-        <!--                             </TextBox.KeyBindings> -->
-        <!--                         </TextBox> -->
-        <!--                         <Button Command="{Binding ShowHomePageCommand}">Home</Button> -->
-        <!--                         <Button Command="{Binding ShowAlbumPageCommand}">Albums</Button> -->
-        <!--                         <Button>Tracks</Button> -->
-        <!--                         <Button>Artists</Button> -->
-        <!--                         <TreeView> -->
-        <!--                             <TreeViewItem Header="Playlists"> -->
-        <!--                                 <TreeViewItem Header="Real..."></TreeViewItem> -->
-        <!--                             </TreeViewItem> -->
-        <!--                         </TreeView> -->
-        <!--                     </StackPanel> -->
-        <!--                 </ScrollViewer> -->
-        <!--                 <Button Grid.Row="1" -->
-        <!--                         VerticalAlignment="Stretch" -->
-        <!--                         HorizontalAlignment="Stretch" -->
-        <!--                         Padding="0" -->
-        <!--                         Command="{Binding ToggleBigCover}" -->
-        <!--                         Height="{Binding CoverSize}" -->
-        <!--                         Background="Transparent"> -->
-        <!--                     <asyncImageLoader:AdvancedImage HorizontalAlignment="Left" -->
-        <!--                            VerticalAlignment="Bottom" -->
-        <!--                            Stretch="Uniform" -->
-        <!--                            Source="{Binding NowPlaying.PlayingArtUrl}" -->
-        <!--                            Loader="{Binding ImageLoader}"/> -->
-        <!--                 </Button> -->
-        <!--                  -->
-        <!--             </Grid> -->
-        <!--         </SplitView.Pane> -->
-        <!--         <Grid> -->
-        <!--             <TransitioningContentControl Content="{Binding CurrentPage}"/> -->
-        <!--         </Grid> -->
-        <!--     </SplitView> -->
-        <!-- </SplitView> -->
         <DockPanel Grid.Column="0">
             <asyncImageLoader:AdvancedImage HorizontalAlignment="Left"
                                             VerticalAlignment="Top"
@@ -260,7 +62,22 @@
                             Command="{Binding PreviousSongCommand}">Previous</Button>
                     <Button Grid.Column="2"
                             Command="{Binding NextSongCommand}">Next</Button>
-                    <Button Grid.Column="3">Menu</Button>
+                    <Button Grid.Column="3">
+                        <Button.Flyout>
+                            <MenuFlyout>
+                                <MenuItem Header="Toggle Heart"/>
+                                <MenuItem Header="Go to Artist"
+                                          Command="{Binding GoToArtist}"/>
+                                <MenuItem Header="Go to Album"
+                                          Command="{Binding GoToAlbum}"/>
+                                <MenuItem Header="Show Info"/>
+                                <MenuItem Header="Share"/>
+                                <MenuItem Header="Fix Playback"
+                                          Command="{Binding FixPlayback}"/>
+                            </MenuFlyout>
+                        </Button.Flyout>
+                        Menu
+                    </Button>
                 </Grid>
                 
                 <Grid VerticalAlignment="Bottom"
@@ -268,9 +85,12 @@
                     <Label Grid.Column="0" 
                            Content="{Binding PlaybackSecondsString}"
                            HorizontalAlignment="Center"/>
-                    <Slider Grid.Column="1" 
+                    <Slider Name="Seekbar" 
+                            Grid.Column="1" 
                             Value="{Binding NowPlaying.PlaybackSeconds}"
-                            Maximum="{Binding NowPlaying.PlaybackMaxSeconds}"/>
+                            Maximum="{Binding NowPlaying.PlaybackMaxSeconds}"
+                            ValueChanged="Seekbar_OnValueChanged">
+                    </Slider>
                     <Label Grid.Column="2" 
                            Content="{Binding PlaybackMaxSecondsString}"
                            HorizontalAlignment="Center"/>

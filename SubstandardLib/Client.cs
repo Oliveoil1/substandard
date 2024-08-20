@@ -82,7 +82,8 @@ public class Client
 				"getCoverArt",
 				new[]
 				{
-					$"id={playingSong.CoverArtId}"
+					$"id={playingSong.CoverArtId}",
+					$"size={512}"
 				}
 			);
 			info.StartedPlaying = DateTime.Now;
