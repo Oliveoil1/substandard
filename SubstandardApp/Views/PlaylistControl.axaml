@@ -1,0 +1,70 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:SubstandardApp.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="SubstandardApp.Views.PlaylistControl"
+             x:DataType="viewModels:PlaylistControlViewModel">
+    <Design.DataContext>
+        <viewModels:PlaylistControlViewModel/>
+    </Design.DataContext>
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Height="25">
+                <Label Content="{Binding PlaylistModel.Title}"
+                       VerticalAlignment="Center"
+                       FontWeight="Bold"/>
+                <Label Content="{Binding PlaylistModel.SongCountString}"
+                       VerticalAlignment="Center"/>
+                <Label Content="{Binding PlaylistModel.DurationString}"
+                       VerticalAlignment="Center"/>
+            </StackPanel>
+            <Grid ColumnDefinitions="*,*,*,*">
+                <Button Grid.Column="0"
+                        Command="{Binding EnqueuePlaylist}"
+                        CommandParameter="0">Play</Button>
+                <Button Grid.Column="1"
+                        Command="{Binding ShuffleEnqueuePlaylist}"
+                        CommandParameter="0">Shuffle</Button>
+                <Button Grid.Column="2">Add Song(s)</Button>
+                <Button Grid.Column="3">Menu</Button>
+            </Grid>
+        </StackPanel>
+        <ListBox x:Name="SongList" 
+                 ItemsSource="{Binding PlaylistModel.Songs}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal"
+                                Background="Transparent"
+                                DoubleTapped="SongList_DoubleTapped">
+                        <StackPanel.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Shuffle Playlist"/>
+                                <MenuItem x:Name="PlayNext"
+                                          Header="Play Next"
+                                          Click="PlayNext_OnClick"/>
+                                <MenuItem x:Name="PlayLast" 
+                                          Header="Play Last"
+                                          Click="PlayLast_OnClick"/>
+                            </ContextMenu>
+                        </StackPanel.ContextMenu>
+                        <Label Content="{Binding DiscNumber}"
+                               IsVisible="{Binding $parent[ListBox].((viewModels:PlaylistControlViewModel)DataContext).PlaylistModel.TrackListDiscNum}"
+                               Width="20"/>
+                        <Label Content="{Binding TrackNumber}"
+                               IsVisible="{Binding $parent[ListBox].((viewModels:PlaylistControlViewModel)DataContext).PlaylistModel.TrackListTrackNum}"
+                               Width="20"/>
+                        <Label Content="{Binding ArtistName}"
+                               IsVisible="{Binding $parent[ListBox].((viewModels:PlaylistControlViewModel)DataContext).PlaylistModel.TrackListArtist}"
+                               FontWeight="Bold"/>
+                        <Label Content="{Binding Title}"
+                               IsVisible="{Binding $parent[ListBox].((viewModels:PlaylistControlViewModel)DataContext).PlaylistModel.TrackListStarred}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </DockPanel>
+</UserControl>

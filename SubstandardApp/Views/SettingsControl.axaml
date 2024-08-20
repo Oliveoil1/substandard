@@ -1,19 +1,17 @@
-﻿<Window xmlns="https://github.com/avaloniaui"
+﻿<UserControl xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:SubstandardApp.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="SubstandardApp.Views.SettingsWindow"
-        x:DataType="vm:SettingsWindowViewModel"
-        Title="SettingsWindow"
-        RequestedThemeVariant="Dark">
+        x:Class="SubstandardApp.Views.SettingsControl"
+        x:DataType="vm:SettingsControlViewModel">
     <Design.DataContext>
-        <vm:SettingsWindowViewModel/>
+        <vm:SettingsControlViewModel/>
     </Design.DataContext>
     <DockPanel>
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" FlowDirection="RightToLeft">
-            <Button>Apply</Button>
+            <Button Command="{Binding ApplySettings}">Apply</Button>
         </StackPanel>
         <TabControl>
             <TabItem Header="Server Info">
@@ -37,17 +35,17 @@
                     <TextBox Grid.Row="0"
                              Grid.Column="1"
                              Margin="0,2,0,2"
-                             Text="{Binding ServerInfoModel.Url}"/>
+                             Text="{Binding SettingsModel.ServerUrl}"/>
                     <TextBox Grid.Row="1"
                              Grid.Column="1"
                              Margin="0,2,0,2"
-                             Text="{Binding ServerInfoModel.Username}"/>
+                             Text="{Binding SettingsModel.ServerUsername}"/>
                     <TextBox Grid.Row="2"
                              Grid.Column="1"
                              Margin="0,2,0,2"
-                             Text="{Binding ServerInfoModel.Password}"/>
+                             Text="{Binding SettingsModel.ServerPassword}"/>
                 </Grid>
             </TabItem>
         </TabControl>
     </DockPanel>
-</Window>
+</UserControl>

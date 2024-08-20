@@ -31,4 +31,10 @@
     <ItemGroup>
       <ProjectReference Include="..\SubstandardLib\SubstandardLib.csproj" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Views\SettingsControl.axaml.cs">
+        <DependentUpon>SettingsWindow.axaml</DependentUpon>
+      </Compile>
+    </ItemGroup>
 </Project>

@@ -32,14 +32,6 @@ public partial class MainWindow : Window
 		}
 	}
 
-	private void SongList_DoubleTapped(object? sender, TappedEventArgs e)
-	{
-		if (DataContext is MainWindowViewModel viewModel && SongList.SelectedItem is SongModel)
-		{
-			viewModel.EnqueuePlaylist(SongList.SelectedIndex);
-		}
-	}
-
 	private void QueueBox_OnPointerReleased(object? sender, PointerReleasedEventArgs e)
 	{
 		queueBoxDrop = true;
@@ -61,33 +53,6 @@ public partial class MainWindow : Window
 			{
 				viewModel.MoveQueueSong(originIndex, destinationIndex);
 			}
-		}
-	}
-
-	private void InputElement_OnPointerEntered(object? sender, PointerEventArgs e)
-	{
-		
-	}
-
-	private void PlayNext_OnClick(object? sender, RoutedEventArgs e)
-	{
-		if (DataContext is MainWindowViewModel viewModel && sender is MenuItem { DataContext: SongModel song })
-		{
-			viewModel.AddToQueue(new List<SongModel>()
-			{
-				song
-			}, true);
-		}
-	}
-
-	private void PlayLast_OnClick(object? sender, RoutedEventArgs e)
-	{
-		if (DataContext is MainWindowViewModel viewModel && sender is MenuItem { DataContext: SongModel song })
-		{
-			viewModel.AddToQueue(new List<SongModel>()
-			{
-				song
-			});
 		}
 	}
 }

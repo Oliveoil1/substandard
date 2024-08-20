@@ -12,6 +12,7 @@ using DynamicData;
 using FluentIcons.Common;
 using ReactiveUI;
 using SubstandardApp.Models;
+using SubstandardApp.Views;
 using SubstandardLib;
 using SubstandardLib.Metadata;
 using SubstandardLib.Subsonic;
@@ -37,6 +38,8 @@ public partial class MainWindowViewModel : ViewModelBase
 	[ObservableProperty] private PlaylistModel _currentPlaylist = new("No Playlist", new List<Song>());
 	
 	[ObservableProperty] private QueueModel _queueModel;
+	[ObservableProperty] private ObservableCollection<TabItemViewModel> _tabs = new();
+	[ObservableProperty] private int _tabSelectedIndex;
 	
 	private readonly Client _subsonicClient;
 	private readonly SettingsModel _settingsModel;
@@ -44,11 +47,8 @@ public partial class MainWindowViewModel : ViewModelBase
 	public MainWindowViewModel()
 	{
 		_subsonicClient = new Client();
-		_settingsModel = new SettingsModel();
-		ServerInfoModel serverInfoModel = new();
-		serverInfoModel.LoadCredentials(_settingsModel);
-		
-		_subsonicClient.Login(serverInfoModel.GetServerInfo());
+		_settingsModel = new SettingsModel(_subsonicClient);
+		_settingsModel.LoadSettings();
 		
 		QueueModel = new QueueModel(_subsonicClient);
 
@@ -109,7 +109,13 @@ public partial class MainWindowViewModel : ViewModelBase
 
 	public void LoadPlaylist(string playlistId)
 	{
-		CurrentPlaylist = _playlists[playlistId];
+		PlaylistModel playlist = _playlists[playlistId];
+		Tabs.Add(new()
+		{
+			Header = $"Playlist: {playlist.Title}",
+			Content = new PlaylistControl(playlist, QueueModel)
+		});
+		TabSelectedIndex = Tabs.Count - 1;
 	}
 
 	public async void SyncPlaylists()
@@ -197,29 +203,22 @@ public partial class MainWindowViewModel : ViewModelBase
 		_subsonicClient.StartScan();
 	}
 
-	public void EnqueuePlaylist(int trackIndex)
-	{
-		QueueModel.LoadPlaylist(CurrentPlaylist.Songs);
-		QueueModel.NextSong(trackIndex);
-	}
-	
-	public void ShuffleEnqueuePlaylist(int trackIndex)
-	{
-		QueueModel.LoadPlaylist(CurrentPlaylist.Songs, true);
-		QueueModel.NextSong();
-	}
-
 	public void MoveQueueSong(int originIndex, int destinationIndex)
 	{
 		QueueModel.MoveSong(originIndex, destinationIndex);
 	}
 
-	public void AddToQueue(List<SongModel> songs, bool playNext = false)
+	public void CloseTab(TabItemViewModel toClose)
 	{
-		int index = -1;
-		if (playNext)
-			index = 0;
-		
-		QueueModel.AddToQueue(songs, index);
+		Tabs.Remove(toClose);
+	}
+
+	public void OpenSettings()
+	{
+		Tabs.Add(new()
+		{
+			Header = "Settings",
+			Content = new SettingsControl(_settingsModel)
+		});
 	}
 }

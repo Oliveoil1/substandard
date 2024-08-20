@@ -13,11 +13,10 @@ public partial class ServerInfoModel : ObservableObject
 
 	private readonly ICredentialStore _credentialStore = CredentialManager.Create("substandard");
 
-	public void LoadCredentials(SettingsModel settingsModel)
+	public void LoadCredentials(string url, string username)
 	{
-		settingsModel.LoadSettings();
-		Url = settingsModel.ServerUrl;
-		Username = settingsModel.ServerUsername;
+		Url = url;
+		Username = username;
 
 		ICredential cred = _credentialStore.Get(Url, Username);
 		

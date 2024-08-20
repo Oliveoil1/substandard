@@ -3,6 +3,11 @@
   <component name="AvaloniaProject">
     <option name="projectPerEditor">
       <map>
+        <entry key="SubstandardApp/App.axaml" value="SubstandardApp/SubstandardApp.csproj" />
+        <entry key="SubstandardApp/Views/MainWindow.axaml" value="SubstandardApp/SubstandardApp.csproj" />
+        <entry key="SubstandardApp/Views/PlaylistControl.axaml" value="SubstandardApp/SubstandardApp.csproj" />
+        <entry key="SubstandardApp/Views/SettingsControl.axaml" value="SubstandardApp/SubstandardApp.csproj" />
+        <entry key="SubstandardApp/Views/SettingsWindow.axaml" value="SubstandardApp/SubstandardApp.csproj" />
         <entry key="SubstandardAvalonia/App.axaml" value="SubstandardAvalonia/SubstandardAvalonia.csproj" />
         <entry key="SubstandardAvalonia/MainWindow.axaml" value="SubstandardAvalonia/SubstandardAvalonia.csproj" />
         <entry key="SubstandardMVVM/App.axaml" value="SubstandardMVVM/SubstandardMVVM.csproj" />
