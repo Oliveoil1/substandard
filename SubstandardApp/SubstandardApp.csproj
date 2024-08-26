@@ -6,6 +6,8 @@
         <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
         <ApplicationManifest>app.manifest</ApplicationManifest>
         <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+        <IsPackable>true</IsPackable>
+        <Version>0.0.1</Version>
     </PropertyGroup>
 
     <ItemGroup>
@@ -36,5 +38,11 @@
       <Compile Update="Views\SettingsControl.axaml.cs">
         <DependentUpon>SettingsWindow.axaml</DependentUpon>
       </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Avalonia.Themes.Simple">
+        <HintPath>..\..\..\.nuget\packages\avalonia.themes.simple\11.0.10\lib\net6.0\Avalonia.Themes.Simple.dll</HintPath>
+      </Reference>
     </ItemGroup>
 </Project>

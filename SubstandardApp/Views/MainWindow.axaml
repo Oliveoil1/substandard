@@ -29,7 +29,7 @@
         </ResourceDictionary>
     </Window.Resources>
 
-    <Grid ColumnDefinitions="300,*,4,220">
+    <Grid ColumnDefinitions="300,*,4,250">
         <DockPanel Grid.Column="0">
             <asyncImageLoader:AdvancedImage HorizontalAlignment="Left"
                                             VerticalAlignment="Top"
@@ -157,19 +157,35 @@
             </DockPanel>
             
             <GridSplitter Grid.Row="1"/>
-            <ListBox x:Name="QueueBox" 
-                     Grid.Row="2" 
-                     ItemsSource="{Binding QueueModel.Queue}"
-                     PointerReleased="QueueBox_OnPointerReleased">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Tag="{Binding}"
-                                    Background="Transparent">
-                            <Label Content="{Binding Title}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+            <TabControl Grid.Row="2">
+                <TabItem Header="{Binding QueueBoxHeader}">
+                    <ListBox x:Name="QueueBox" 
+                             Grid.Row="2" 
+                             ItemsSource="{Binding QueueModel.Queue}"
+                             PointerReleased="QueueBox_OnPointerReleased">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Tag="{Binding}"
+                                            Background="Transparent">
+                                    <Label Content="{Binding Title}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </TabItem>
+                <TabItem Header="{Binding HistoryBoxHeader}">
+                    <ListBox ItemsSource="{Binding QueueModel.QueueHistory}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Tag="{Binding}"
+                                            Background="Transparent">
+                                    <Label Content="{Binding Title}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </TabItem>
+            </TabControl>
         </Grid>
     </Grid>
 </Window>

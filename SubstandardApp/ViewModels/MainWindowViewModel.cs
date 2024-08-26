@@ -39,6 +39,9 @@ public partial class MainWindowViewModel : ViewModelBase
 	[ObservableProperty] private PlaylistModel _currentPlaylist = new("No Playlist", new List<Song>());
 	
 	[ObservableProperty] private QueueModel _queueModel;
+	[ObservableProperty] private string _queueBoxHeader = "Queue (0)";
+	[ObservableProperty] private string _historyBoxHeader = "History (0)";
+	
 	[ObservableProperty] private ObservableCollection<TabItemViewModel> _tabs = new();
 	[ObservableProperty] private int _tabSelectedIndex;
 	
@@ -77,6 +80,9 @@ public partial class MainWindowViewModel : ViewModelBase
 			}
 
 			SeekingManually = true;
+			
+			QueueBoxHeader = $"Queue ({QueueModel.Queue.Count})";
+			HistoryBoxHeader = $"History ({QueueModel.QueueHistory.Count})";
 			
 			await Task.Delay(100);
 		}
