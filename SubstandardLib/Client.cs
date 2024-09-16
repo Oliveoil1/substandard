@@ -12,14 +12,14 @@ public class Client
 	// }
 	private bool _hasSubmittedScrobble = false;
 
-	private VlcPlayer _vlcPlayer;
+	private AudioPlayer _audioPlayer;
 	private string _playingId;
 
 	private NowPlayingInfo _mostRecentNowPlaying = new();
 
 	public Client()
 	{
-		_vlcPlayer = new VlcPlayer();
+		_audioPlayer = new AudioPlayer();
 		_playingId = "null";
 	}
 
@@ -38,24 +38,24 @@ public class Client
 				$"id={id}"
 			});
 		
-		_vlcPlayer.PlayUrl(streamUrl);
+		_audioPlayer.PlayUrl(streamUrl);
 
 		_hasSubmittedScrobble = false;
 	}
 
 	public void TogglePause()
 	{
-		_vlcPlayer.TogglePause();
+		_audioPlayer.TogglePause();
 	}
 
 	public void SetVolume(int volume)
 	{
-		_vlcPlayer.SetVolume(volume);
+		_audioPlayer.SetVolume(volume);
 	}
 
 	public void SeekTo(float seconds)
 	{
-		_vlcPlayer.SeekTo(seconds);
+		_audioPlayer.SeekTo(seconds);
 	}
 
 	public async void FixPlayback()
@@ -97,16 +97,16 @@ public class Client
 			info.PlayingSong.Starred = _mostRecentNowPlaying.PlayingSong.Starred;
 		}
 		
-		info.IsPaused = _vlcPlayer.GetPaused();
-		info.PlaybackSeconds = _vlcPlayer.GetPlaybackSeconds();
-		info.PlaybackMaxSeconds = _vlcPlayer.GetPlaybackMaxSeconds();
+		info.IsPaused = _audioPlayer.GetPaused();
+		info.PlaybackSeconds = _audioPlayer.GetPlaybackSeconds();
+		info.PlaybackMaxSeconds = _audioPlayer.GetPlaybackMaxSeconds();
 
 		_mostRecentNowPlaying = info;
 		
 		if(info.PlaybackSeconds / info.PlaybackMaxSeconds > 0.5)
 			Scrobble(info, true);
 		
-		if (Math.Abs(info.PlaybackMaxSeconds - info.PlaybackSeconds) < 0.5f && info.PlayingSong.Id != "null" && info.PlaybackMaxSeconds > 0)
+		if (_audioPlayer.GetStopped())
 		{
 			info.AtSongEnd = true;
 		}

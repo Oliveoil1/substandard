@@ -26,8 +26,7 @@
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
         <PackageReference Include="Devlooped.CredentialManager" Version="2.5.0.1" />
         <PackageReference Include="FluentIcons.Avalonia" Version="1.1.244" />
-        <PackageReference Include="LibVLCSharp" Version="3.8.5" />
-        <PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.20" />
+        <PackageReference Include="NAudio" Version="2.2.1" />
     </ItemGroup>
 
     <ItemGroup>

@@ -74,7 +74,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
 			PausePlayText = NowPlaying.IsPaused ? "Play" : "Pause";
 			
-			if (NowPlaying.AtSongEnd)
+			if (NowPlaying.AtSongEnd && QueueModel.Queue.Count > 0)
 			{
 				QueueModel.NextSong();
 			}
@@ -120,6 +120,9 @@ public partial class MainWindowViewModel : ViewModelBase
 
 	public void LoadPlaylist(string playlistId)
 	{
+		if (playlistId is "artist:null" or "playlist:null" or "album:null")
+			return;
+		
 		PlaylistModel playlist = _playlists[playlistId];
 		Tabs.Add(new()
 		{
