@@ -18,6 +18,7 @@ public partial class PlaylistModel : ObservableObject
 	[ObservableProperty] private string _title;
 	[ObservableProperty] private int _duration;
 	[ObservableProperty] private int _songCount;
+	[ObservableProperty] private bool _isAlbum;
 
 	[ObservableProperty] private string _durationString;
 	[ObservableProperty] private string _songCountString;
@@ -73,10 +74,11 @@ public partial class PlaylistModel : ObservableObject
 		Songs = CreateSongModels(playlist.Songs);
 	}
 
-	public PlaylistModel(string title, List<Song> songs)
+	public PlaylistModel(string title, List<Song> songs, bool isAlbum = false)
 	{
 		Title = title;
 		SongCount = songs.Count;
+		IsAlbum = isAlbum;
 
 		Songs = CreateSongModels(songs);
 

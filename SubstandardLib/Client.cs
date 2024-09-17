@@ -44,9 +44,16 @@ public class Client
 		_audioPlayer.TogglePause();
 	}
 
-	public void SetVolume(int volume)
+	public void SetVolume(float volume)
 	{
 		_audioPlayer.SetVolume(volume);
+	}
+
+	public void SetReplayGain(AudioPlayer.ReplayGainMode gainMode, float trackGain, float albumGain)
+	{
+		_audioPlayer.GainMode = gainMode;
+		_audioPlayer.TrackGain = trackGain;
+		_audioPlayer.AlbumGain = albumGain;
 	}
 
 	public void SeekTo(float seconds)
@@ -86,8 +93,16 @@ public class Client
 			info.AtSongEnd = false;
 
 			var lastfmClient = new LastfmClient($"{Secrets.Secrets.LastFmKey}");
-			Hqub.Lastfm.Entities.Album lastfmAlbum = await lastfmClient.Album.GetInfoAsync(info.PlayingAlbum.ArtistName, info.PlayingAlbum.Title);
-			info.LastFMCoverUrl = lastfmAlbum.Images.Last().Url;
+			try
+			{
+				Hqub.Lastfm.Entities.Album lastfmAlbum = await lastfmClient.Album.GetInfoAsync(info.PlayingAlbum.ArtistName, info.PlayingAlbum.Title);
+				info.LastFMCoverUrl = lastfmAlbum.Images.Last().Url;
+			}
+			catch
+			{
+				info.LastFMCoverUrl = "https://www.last.fm/static/images/lastfm_avatar_twitter.52a5d69a85ac.png";
+			}
+			
 
 			Scrobble(info);
 		}

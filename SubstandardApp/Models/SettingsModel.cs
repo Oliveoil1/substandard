@@ -12,6 +12,7 @@ public partial class SettingsModel : ObservableObject
 	[ObservableProperty] private string _serverUrl = string.Empty;
 	[ObservableProperty] private string _serverUsername = string.Empty;
 	[ObservableProperty] private string _serverPassword = string.Empty;
+	[ObservableProperty] private AudioPlayer.ReplayGainMode _gainMode = AudioPlayer.ReplayGainMode.Auto;
 	
 	private readonly string _dataFolderPath;
 	private readonly string _settingsFilePath;
@@ -43,6 +44,7 @@ public partial class SettingsModel : ObservableObject
 
 		ServerUrl = settings.ServerUrl;
 		ServerUsername = settings.ServerUsername;
+		GainMode = settings.GainMode;
 		
 		_serverInfoModel.LoadCredentials(ServerUrl, ServerUsername);
 		ServerPassword = _serverInfoModel.Password;
@@ -55,7 +57,8 @@ public partial class SettingsModel : ObservableObject
 		SettingsFile settings = new()
 		{
 			ServerUrl = ServerUrl,
-			ServerUsername = ServerUsername
+			ServerUsername = ServerUsername,
+			GainMode = GainMode
 		};
 
 		string jsonString = JsonSerializer.Serialize(settings);
@@ -79,4 +82,5 @@ public class SettingsFile
 {
 	public string ServerUrl { get; set; }
 	public string ServerUsername { get; set; }
+	public AudioPlayer.ReplayGainMode GainMode { get; set; }
 }

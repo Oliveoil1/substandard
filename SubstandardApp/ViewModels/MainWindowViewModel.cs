@@ -46,6 +46,8 @@ public partial class MainWindowViewModel : ViewModelBase
 	
 	[ObservableProperty] private ObservableCollection<TabItemViewModel> _tabs = new();
 	[ObservableProperty] private int _tabSelectedIndex;
+
+	[ObservableProperty] private float _volume = 1.0f;
 	
 	private readonly Client _subsonicClient;
 	private readonly SettingsModel _settingsModel;
@@ -58,7 +60,7 @@ public partial class MainWindowViewModel : ViewModelBase
 		_settingsModel = new SettingsModel(_subsonicClient);
 		_settingsModel.LoadSettings();
 		
-		QueueModel = new QueueModel(_subsonicClient);
+		QueueModel = new QueueModel(_subsonicClient, _settingsModel);
 
 		_discordRpcClient = new DiscordRpcClient(Secrets.Secrets.DiscordKey);
 		_discordRpcClient.Initialize();
@@ -100,6 +102,8 @@ public partial class MainWindowViewModel : ViewModelBase
 			
 			QueueBoxHeader = $"Queue ({QueueModel.Queue.Count})";
 			HistoryBoxHeader = $"History ({QueueModel.QueueHistory.Count})";
+			
+			_subsonicClient.SetVolume(Volume);
 
 			if (NowPlaying is { AtSongEnd: false, IsPaused: false })
 			{
@@ -236,7 +240,7 @@ public partial class MainWindowViewModel : ViewModelBase
 			{
 				string albumPlaylistId = $"album:{album.Id}";
 				List<Song> songs = fullSearch.Songs.Where(song => song.AlbumId == album.Id).ToList();
-				var newPlaylist = new PlaylistModel(album.Title, songs);
+				var newPlaylist = new PlaylistModel(album.Title, songs, true);
 				newPlaylist.TrackListTrackNum = true;
 				newPlaylist.TrackListDiscNum = newPlaylist.MultiDisc;
 				newPlaylist.Sort(PlaylistModel.SortMode.TrackNumber);

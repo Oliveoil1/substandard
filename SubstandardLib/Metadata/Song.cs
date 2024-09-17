@@ -20,6 +20,9 @@ public struct Song
 	public int DiscNumber;
 	public int TrackNumber;
 
+	public float TrackGain;
+	public float AlbumGain;
+
 	public bool Starred;
 	
 	public string CoverArtUrl;
@@ -37,6 +40,8 @@ public struct Song
 		Bitrate = 0;
 		DiscNumber = 0;
 		TrackNumber = 0;
+		TrackGain = 0;
+		AlbumGain = 0;
 		Starred = false;
 		CoverArtUrl = string.Empty;
 	}
@@ -53,6 +58,8 @@ public struct Song
 		Bitrate = jsonSong["bitRate"]?.GetValue<int>() ?? 0;
 		DiscNumber = jsonSong["discNumber"]?.GetValue<int>() ?? 0;
 		TrackNumber = jsonSong["track"]?.GetValue<int>() ?? 0;
+		TrackGain = jsonSong["replayGain"]?["trackGain"]?.GetValue<float>() ?? 0;
+		AlbumGain = jsonSong["replayGain"]?["albumGain"]?.GetValue<float>() ?? 0;
 		Starred = jsonSong["starred"]?.GetValue<string>() != null;
 		
 		CoverArtUrl = Utils.HttpGetUrl(

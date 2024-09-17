@@ -11,19 +11,23 @@ namespace SubstandardApp.Models;
 
 public partial class QueueModel : ObservableObject
 {
-	private Client _client;
+	private readonly Client _client;
+	private readonly SettingsModel _settingsModel;
+
+	private bool _isAlbum = false;
 	
 	[ObservableProperty] private bool _shuffleEnabled;
 	[ObservableProperty] private List<SongModel> _queue = new();
 	[ObservableProperty] private List<SongModel> _queueHistory = new();
 	[ObservableProperty] private SongModel? _currentSong;
 
-	public QueueModel(Client client)
+	public QueueModel(Client client, SettingsModel settingsModel)
 	{
 		_client = client;
+		_settingsModel = settingsModel;
 	}
 
-	public void LoadPlaylist(List<SongModel> songs, bool shuffle = false)
+	public void LoadPlaylist(List<SongModel> songs, bool shuffle = false, bool isAlbum = false)
 	{
 		Queue.Clear();
 		QueueHistory.Clear();
@@ -35,6 +39,8 @@ public partial class QueueModel : ObservableObject
 			Random rng = new();
 			Queue = songs.OrderBy(_ => rng.Next()).ToList();
 		}
+
+		_isAlbum = isAlbum;
 	}
 
 	public void NextSong(int songsToSkip = 0)
@@ -58,7 +64,14 @@ public partial class QueueModel : ObservableObject
 
 			skipped++;
 		}
+
+		AudioPlayer.ReplayGainMode gainMode = _settingsModel.GainMode switch
+		{
+			AudioPlayer.ReplayGainMode.Auto => _isAlbum ? AudioPlayer.ReplayGainMode.Album : AudioPlayer.ReplayGainMode.Track,
+			_ => _settingsModel.GainMode
+		};
 		
+		_client.SetReplayGain(gainMode, CurrentSong?.TrackGain ?? 0, CurrentSong?.AlbumGain ?? 0);
 		_client.PlaySong(CurrentSong?.Id ?? "null");
 
 		Queue = qModified;
@@ -83,6 +96,13 @@ public partial class QueueModel : ObservableObject
 			skipped++;
 		}
 
+		AudioPlayer.ReplayGainMode gainMode = _settingsModel.GainMode switch
+		{
+			AudioPlayer.ReplayGainMode.Auto => _isAlbum ? AudioPlayer.ReplayGainMode.Album : AudioPlayer.ReplayGainMode.Track,
+			_ => _settingsModel.GainMode
+		};
+		
+		_client.SetReplayGain(gainMode, CurrentSong?.TrackGain ?? 0, CurrentSong?.AlbumGain ?? 0);
 		_client.PlaySong(CurrentSong?.Id ?? "null");
 		
 		Queue = qModified;

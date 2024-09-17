@@ -6,8 +6,20 @@ namespace SubstandardLib;
 
 public class AudioPlayer
 {
+	public enum ReplayGainMode
+	{
+		None,
+		Track,
+		Album,
+		Auto
+	}
 	private readonly WaveOutEvent _outputDevice = new WaveOutEvent();
 	private AudioFileReader? _audioFile;
+
+	public float TrackGain = 0.0f;
+	public float AlbumGain = 0.0f;
+	public ReplayGainMode GainMode = ReplayGainMode.None;
+	
 	public AudioPlayer()
 	{
 		// // _vlc = new LibVLC();
@@ -20,6 +32,16 @@ public class AudioPlayer
 		try
 		{
 			_audioFile = new AudioFileReader(url);
+
+			float gainDb = GainMode switch
+			{
+				ReplayGainMode.Track => TrackGain,
+				ReplayGainMode.Album => AlbumGain,
+				_ => 0.0f
+			};
+
+			_audioFile.Volume = MathF.Pow(10, gainDb / 20);
+			
 			_outputDevice.Init(_audioFile);
 			_outputDevice.Play();
 		}
@@ -44,9 +66,8 @@ public class AudioPlayer
 		}
 	}
 
-	public void SetVolume(int volume)
+	public void SetVolume(float volume)
 	{
-		// _musicPlayer.Volume = volume;
 		_outputDevice.Volume = volume;
 	}
 

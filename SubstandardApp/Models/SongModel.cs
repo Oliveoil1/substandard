@@ -25,6 +25,9 @@ public partial class SongModel : ObservableObject
 	[ObservableProperty] private int _bitrate;
 	[ObservableProperty] private int _discNumber;
 	[ObservableProperty] private int _trackNumber;
+
+	[ObservableProperty] private float _trackGain;
+	[ObservableProperty] private float _albumGain;
 	
 	[ObservableProperty] private bool _starred;
 	
@@ -45,6 +48,9 @@ public partial class SongModel : ObservableObject
 		Bitrate = song.Bitrate;
 		DiscNumber = song.DiscNumber;
 		TrackNumber = song.TrackNumber;
+
+		TrackGain = song.TrackGain;
+		AlbumGain = song.AlbumGain;
 
 		Starred = song.Starred;
 	}

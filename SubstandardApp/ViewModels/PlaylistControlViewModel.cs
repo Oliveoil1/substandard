@@ -18,18 +18,18 @@ public partial class PlaylistControlViewModel : ViewModelBase
 	public PlaylistControlViewModel()
 	{
 		PlaylistModel = new PlaylistModel("Null", new());
-		QueueModel = new QueueModel(new Client());
+		QueueModel = new QueueModel(new Client(), new SettingsModel(new Client()));
 	}
 	
 	public void EnqueuePlaylist(int trackIndex)
 	{
-		QueueModel.LoadPlaylist(PlaylistModel.Songs);
+		QueueModel.LoadPlaylist(PlaylistModel.Songs, false, PlaylistModel.IsAlbum);
 		QueueModel.NextSong(trackIndex);
 	}
 	
 	public void ShuffleEnqueuePlaylist(int trackIndex)
 	{
-		QueueModel.LoadPlaylist(PlaylistModel.Songs, true);
+		QueueModel.LoadPlaylist(PlaylistModel.Songs, true, PlaylistModel.IsAlbum);
 		QueueModel.NextSong();
 	}
 	

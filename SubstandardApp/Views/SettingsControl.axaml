@@ -47,6 +47,24 @@
                              PasswordChar="*"/>
                 </Grid>
             </TabItem>
+            <TabItem Header="Playback">
+                <Grid ColumnDefinitions="200,200"
+                      RowDefinitions="28,28,28">
+                    <Label Grid.Row="0"
+                           Grid.Column="0"
+                           VerticalAlignment="Center">
+                        Replaygain Mode (update on track change)
+                    </Label>
+                    <ComboBox Grid.Row="0"
+                              Grid.Column="1"
+                              SelectedIndex="{Binding SettingsModel.GainMode}">
+                        <ComboBoxItem>None</ComboBoxItem>
+                        <ComboBoxItem>Auto</ComboBoxItem>
+                        <ComboBoxItem>Track</ComboBoxItem>
+                        <ComboBoxItem>Album</ComboBoxItem>
+                    </ComboBox>
+                </Grid>
+            </TabItem>
         </TabControl>
     </DockPanel>
 </UserControl>
