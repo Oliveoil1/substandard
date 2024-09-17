@@ -54,7 +54,7 @@
                 
                 <Grid VerticalAlignment="Bottom"
                       Margin="0,0,0,20"
-                      ColumnDefinitions="*,*,*,*">
+                      ColumnDefinitions="*,*,*,*,Auto">
                     <Button Grid.Column="0"
                             Command="{Binding PausePlayCommand}"
                             Content="{Binding PausePlayText}"/>
@@ -78,6 +78,11 @@
                         </Button.Flyout>
                         Menu
                     </Button>
+                    <Slider Grid.Column="4" 
+                            Orientation="Vertical"
+                            Value="{Binding Volume}"
+                            Maximum="1"
+                            Minimum="0"/>
                 </Grid>
                 
                 <Grid VerticalAlignment="Bottom"
