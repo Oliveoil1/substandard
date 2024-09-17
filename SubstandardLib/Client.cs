@@ -1,4 +1,6 @@
 ﻿using System.Text.Json.Nodes;
+using Hqub.Lastfm;
+using Microsoft.Extensions.Configuration;
 using SubstandardLib.Metadata;
 using SubstandardLib.Subsonic;
 
@@ -12,16 +14,10 @@ public class Client
 	// }
 	private bool _hasSubmittedScrobble = false;
 
-	private AudioPlayer _audioPlayer;
-	private string _playingId;
+	private AudioPlayer _audioPlayer = new();
+	private string _playingId = "null";
 
 	private NowPlayingInfo _mostRecentNowPlaying = new();
-
-	public Client()
-	{
-		_audioPlayer = new AudioPlayer();
-		_playingId = "null";
-	}
 
 	public void Login(ServerInfo serverInfo)
 	{
@@ -88,6 +84,10 @@ public class Client
 			);
 			info.StartedPlaying = DateTime.Now;
 			info.AtSongEnd = false;
+
+			var lastfmClient = new LastfmClient($"{Secrets.Secrets.LastFmKey}");
+			Hqub.Lastfm.Entities.Album lastfmAlbum = await lastfmClient.Album.GetInfoAsync(info.PlayingAlbum.ArtistName, info.PlayingAlbum.Title);
+			info.LastFMCoverUrl = lastfmAlbum.Images.Last().Url;
 
 			Scrobble(info);
 		}

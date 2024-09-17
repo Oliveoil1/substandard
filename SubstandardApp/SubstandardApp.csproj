@@ -8,6 +8,7 @@
         <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
         <IsPackable>true</IsPackable>
         <Version>0.0.1</Version>
+        <UserSecretsId>ab217449-40fc-4b36-96ae-9dc6df47e158</UserSecretsId>
     </PropertyGroup>
 
     <ItemGroup>
@@ -25,11 +26,16 @@
         <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.10"/>
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
         <PackageReference Include="Devlooped.CredentialManager" Version="2.5.0.1" />
+        <PackageReference Include="DiscordRichPresence" Version="1.2.1.24" />
         <PackageReference Include="FluentIcons.Avalonia" Version="1.1.244" />
+        <PackageReference Include="Hqub.Last.fm" Version="2.3.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.0" />
         <PackageReference Include="NAudio" Version="2.2.1" />
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Secrets\Secrets.csproj" />
       <ProjectReference Include="..\SubstandardLib\SubstandardLib.csproj" />
     </ItemGroup>
 

@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SubstandardLib", "Substanda
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SubstandardApp", "SubstandardApp\SubstandardApp.csproj", "{0DC0E29C-A5F6-4691-87B7-807214CD85FD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Secrets", "Secrets\Secrets.csproj", "{20A5F4D0-FA34-4C39-B773-A53C33854FB9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{0DC0E29C-A5F6-4691-87B7-807214CD85FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0DC0E29C-A5F6-4691-87B7-807214CD85FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0DC0E29C-A5F6-4691-87B7-807214CD85FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20A5F4D0-FA34-4C39-B773-A53C33854FB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20A5F4D0-FA34-4C39-B773-A53C33854FB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20A5F4D0-FA34-4C39-B773-A53C33854FB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20A5F4D0-FA34-4C39-B773-A53C33854FB9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

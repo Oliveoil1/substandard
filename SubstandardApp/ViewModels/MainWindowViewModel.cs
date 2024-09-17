@@ -6,8 +6,10 @@ using System.Reactive.Linq;
 using System.Threading.Tasks;
 using AsyncImageLoader;
 using AsyncImageLoader.Loaders;
+using Avalonia;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
+using DiscordRPC;
 using DynamicData;
 using FluentIcons.Common;
 using ReactiveUI;
@@ -48,6 +50,8 @@ public partial class MainWindowViewModel : ViewModelBase
 	private readonly Client _subsonicClient;
 	private readonly SettingsModel _settingsModel;
 
+	private readonly DiscordRpcClient _discordRpcClient;
+
 	public MainWindowViewModel()
 	{
 		_subsonicClient = new Client();
@@ -56,12 +60,24 @@ public partial class MainWindowViewModel : ViewModelBase
 		
 		QueueModel = new QueueModel(_subsonicClient);
 
+		_discordRpcClient = new DiscordRpcClient(Secrets.Secrets.DiscordKey);
+		_discordRpcClient.Initialize();
+		App? app = Application.Current as App;
+		if (app != null)
+			app.ShutdownRequested += (sender, args) =>
+			{
+				_discordRpcClient.ClearPresence();
+				_discordRpcClient.Dispose();
+			};
+		
 		SyncPlaylists();
 		Update();
 	}
 
 	private async void Update()
 	{
+		const int discordWaitTicks = 50;
+		int discordTicks = 0;
 		while (true)
 		{
 			SeekingManually = false;
@@ -77,13 +93,44 @@ public partial class MainWindowViewModel : ViewModelBase
 			if (NowPlaying.AtSongEnd && QueueModel.Queue.Count > 0)
 			{
 				QueueModel.NextSong();
+				discordTicks = 0;
 			}
 
 			SeekingManually = true;
 			
 			QueueBoxHeader = $"Queue ({QueueModel.Queue.Count})";
 			HistoryBoxHeader = $"History ({QueueModel.QueueHistory.Count})";
-			
+
+			if (NowPlaying is { AtSongEnd: false, IsPaused: false })
+			{
+				if (discordTicks <= 0)
+				{
+					_discordRpcClient.SetPresence(new RichPresence()
+					{
+						Details = nowPlaying.PlayingSong.Title,
+						State = $"By {nowPlaying.PlayingSong.ArtistName}",
+						Timestamps = new Timestamps()
+						{
+							Start = nowPlaying.StartedPlaying.ToUniversalTime(),
+							End = nowPlaying.StartedPlaying.ToUniversalTime().AddSeconds(nowPlaying.PlaybackMaxSeconds)
+						},
+						Assets = new Assets()
+						{
+							LargeImageText = nowPlaying.PlayingSong.AlbumName,
+							LargeImageKey = nowPlaying.LastFMCoverUrl
+						}
+					});
+
+					discordTicks = discordWaitTicks;
+				}
+			}
+			else
+			{
+				_discordRpcClient.ClearPresence();
+				discordTicks = discordWaitTicks;
+			}
+
+			discordTicks -= 1;
 			await Task.Delay(100);
 		}
 	}

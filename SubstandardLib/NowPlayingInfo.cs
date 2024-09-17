@@ -17,4 +17,6 @@ public struct NowPlayingInfo()
 	public float PlaybackMaxSeconds = 0;
 	
 	public DateTime StartedPlaying = DateTime.Now;
+	
+	public string LastFMCoverUrl = "";
 }
